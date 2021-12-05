@@ -1,18 +1,18 @@
 #!/bin/bash
-CWD=`pwd`
+CWD="$(pwd)"
 
 # Register semantic commits scripts execution path
 #
 # $1 — shell configuraton file path
 function register_path {
-  PATH_LINE='export PATH=$PATH:'$CWD':$PATH'
+  PATH_LINE="export PATH=\$PATH:${CWD}:\$PATH"
 
   if [ -f $1 ]; then
-    if ! grep -Fxq "$PATH_LINE" $1; then
+    if ! grep -Fxq "$PATH_LINE" "${1}"; then
       echo
-      echo "Adding path to $1"
-      echo $PATH_LINE >> $1
-      source $1
+      echo "Adding path to ${1}"
+      echo "${PATH_LINE}" >> $1
+      source "${1}"
     fi
   fi
 }
